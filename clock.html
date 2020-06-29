@@ -6,10 +6,11 @@
     <title>javascript clock</title>
   </head>
   <body>
-    <span id="clock"></span>
+    <span id="sample_clock"></span>
+    <div id="arrange_clock"></div>
     <script>
       t = 0;
-      var element = document.getElementById("clock");
+      var element = document.getElementById("sample_clock");
       function new_clock(){
         var date = new Date();
         var year = date.getFullYear();
@@ -19,17 +20,38 @@
         var minute = date.getMinutes();
         var second = date.getSeconds();
         element.innerHTML = year+"年"+month+"月"+day+"日"+hour+"時"+minute+"分"+second+"秒"
+
+        //console.log(date);
+        //console.log(year);
+        //console.log(month);
+        //console.log(day);
+        //console.log(hour);
+        //console.log(minute);
+        //console.log(second);
       };
       t = setInterval("new_clock()",500);
-
       console.log(element);
-      console.log(date);
-      console.log(year);
-      console.log(month);
-      console.log(day);
-      console.log(hour);
-      console.log(minute);
-      console.log(second);
+
+      var arrange = document.getElementById("arrange_clock");
+      function arrange_clock(){
+        var week_day = new Array("日","月","火","水","木","金","土");
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var da = date.getDate();
+        var day = date.getDay();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        if(hour < 10) { hour = "0" + hour;}
+        if(minute < 10) { minute = "0" + minute;}
+        if(second < 10) { second = "0" + second;}
+        var clock = year + "年" + month + "月" + da + "日" + week_day[day] + "曜日" + hour + "時" + minute + "分" + second + "秒"
+        arrange.innerHTML = clock.toLocaleString();
+        window.setTimeout("arrange_clock(),1000");
+      };
+      window.onload = arrange_clock;
+      console.log(arrange);
     </script>
   </body>
 </html>
