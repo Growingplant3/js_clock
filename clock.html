@@ -6,9 +6,30 @@
     <title>javascript clock</title>
   </head>
   <body>
-    
+    <span id="clock"></span>
     <script>
-      
+      t = 0;
+      var element = document.getElementById("clock");
+      function new_clock(){
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        element.innerHTML = year+"年"+month+"月"+day+"日"+hour+"時"+minute+"分"+second+"秒"
+      };
+      t = setInterval("new_clock()",500);
+
+      console.log(element);
+      console.log(date);
+      console.log(year);
+      console.log(month);
+      console.log(day);
+      console.log(hour);
+      console.log(minute);
+      console.log(second);
     </script>
   </body>
 </html>
